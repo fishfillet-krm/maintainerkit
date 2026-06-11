@@ -1,0 +1,134 @@
+{
+  "generatedAt": "2026-06-11T12:59:33.793Z",
+  "methodology": "Read-only shallow clones. MaintainerKit detection and template generation ran in memory; no target repository files were written.",
+  "results": [
+    {
+      "name": "commander.js",
+      "repository": "https://github.com/tj/commander.js",
+      "commit": "ba6d13ddb4243e5913367734f8c159089ffe7834",
+      "detected": {
+        "projectName": "commander",
+        "packageManager": "npm",
+        "languages": ["TypeScript", "JavaScript"],
+        "directories": ["tests", "docs", ".github"],
+        "commands": {
+          "install": "npm install",
+          "build": "",
+          "test": "npm run test",
+          "lint": "",
+          "format": ""
+        }
+      },
+      "generatedFileCandidates": [
+        "AGENTS.md",
+        ".github/ISSUE_TEMPLATE/bug_report.md",
+        ".github/ISSUE_TEMPLATE/feature_request.md",
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".maintainerkit/config.json",
+        ".maintainerkit/prompts/triage.md",
+        ".maintainerkit/prompts/plan.md",
+        "docs/maintenance.md",
+        "docs/architecture.md",
+        "docs/testing.md"
+      ],
+      "existingFileCollisions": [".github/PULL_REQUEST_TEMPLATE.md"],
+      "writesPerformed": false
+    },
+    {
+      "name": "click",
+      "repository": "https://github.com/pallets/click",
+      "commit": "8a1b1a33d739be05b7e91251e3c0dde77c5e152f",
+      "detected": {
+        "projectName": "click",
+        "packageManager": "unknown",
+        "languages": ["Python"],
+        "directories": ["src", "tests", "docs", ".github"],
+        "commands": {
+          "install": "",
+          "build": "",
+          "test": "",
+          "lint": "",
+          "format": ""
+        }
+      },
+      "generatedFileCandidates": [
+        "AGENTS.md",
+        ".github/ISSUE_TEMPLATE/bug_report.md",
+        ".github/ISSUE_TEMPLATE/feature_request.md",
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".maintainerkit/config.json",
+        ".maintainerkit/prompts/triage.md",
+        ".maintainerkit/prompts/plan.md",
+        "docs/maintenance.md",
+        "docs/architecture.md",
+        "docs/testing.md"
+      ],
+      "existingFileCollisions": [".github/PULL_REQUEST_TEMPLATE.md", "docs/testing.md"],
+      "writesPerformed": false
+    },
+    {
+      "name": "fd",
+      "repository": "https://github.com/sharkdp/fd",
+      "commit": "25461e5ce13dc12ff2a75993285a87e99b33db2d",
+      "detected": {
+        "projectName": "fd",
+        "packageManager": "unknown",
+        "languages": ["Rust"],
+        "directories": ["src", "tests", ".github"],
+        "commands": {
+          "install": "",
+          "build": "",
+          "test": "",
+          "lint": "",
+          "format": ""
+        }
+      },
+      "generatedFileCandidates": [
+        "AGENTS.md",
+        ".github/ISSUE_TEMPLATE/bug_report.md",
+        ".github/ISSUE_TEMPLATE/feature_request.md",
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".maintainerkit/config.json",
+        ".maintainerkit/prompts/triage.md",
+        ".maintainerkit/prompts/plan.md",
+        "docs/maintenance.md",
+        "docs/architecture.md",
+        "docs/testing.md"
+      ],
+      "existingFileCollisions": [".github/ISSUE_TEMPLATE/feature_request.md"],
+      "writesPerformed": false
+    },
+    {
+      "name": "cobra",
+      "repository": "https://github.com/spf13/cobra",
+      "commit": "ad460ea8f249db69c943a365fb84f3a59042d54e",
+      "detected": {
+        "projectName": "cobra",
+        "packageManager": "unknown",
+        "languages": ["Go"],
+        "directories": [".github"],
+        "commands": {
+          "install": "",
+          "build": "",
+          "test": "",
+          "lint": "",
+          "format": ""
+        }
+      },
+      "generatedFileCandidates": [
+        "AGENTS.md",
+        ".github/ISSUE_TEMPLATE/bug_report.md",
+        ".github/ISSUE_TEMPLATE/feature_request.md",
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".maintainerkit/config.json",
+        ".maintainerkit/prompts/triage.md",
+        ".maintainerkit/prompts/plan.md",
+        "docs/maintenance.md",
+        "docs/architecture.md",
+        "docs/testing.md"
+      ],
+      "existingFileCollisions": [],
+      "writesPerformed": false
+    }
+  ]
+}
