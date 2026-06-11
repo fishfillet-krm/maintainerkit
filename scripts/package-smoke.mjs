@@ -20,9 +20,10 @@ const packed = spawnSync(
       ...process.env,
       npm_config_cache: npmCache,
     },
+    shell: process.platform === "win32",
   },
 );
-assert.equal(packed.status, 0, packed.stderr);
+assert.equal(packed.status, 0, packed.stderr || packed.error?.message);
 
 const tarballName = packed.stdout
   .trim()
@@ -43,9 +44,10 @@ const installed = spawnSync(
       ...process.env,
       npm_config_cache: npmCache,
     },
+    shell: process.platform === "win32",
   },
 );
-assert.equal(installed.status, 0, installed.stderr);
+assert.equal(installed.status, 0, installed.stderr || installed.error?.message);
 
 const packageDirectory = path.join(installDirectory, "node_modules", "maintainerkit");
 for (const relativePath of ["dist/index.js", "dist/index.d.ts", "README.md", "LICENSE"]) {
@@ -63,8 +65,12 @@ const bin =
   process.platform === "win32"
     ? path.join(installDirectory, "node_modules", ".bin", "maintainerkit.cmd")
     : path.join(installDirectory, "node_modules", ".bin", "maintainerkit");
-const help = spawnSync(bin, ["--help"], { cwd: installDirectory, encoding: "utf8" });
-assert.equal(help.status, 0, help.stderr);
+const help = spawnSync(bin, ["--help"], {
+  cwd: installDirectory,
+  encoding: "utf8",
+  shell: process.platform === "win32",
+});
+assert.equal(help.status, 0, help.stderr || help.error?.message);
 assert.match(help.stdout, /Prepare repositories for safe AI-assisted maintenance/);
 
 console.log("Package smoke test passed.");
