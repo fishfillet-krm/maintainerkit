@@ -7,6 +7,33 @@ import { makeTempDir, removeTempDirs } from "./helpers.js";
 afterEach(removeTempDirs);
 
 describe("detectProject", () => {
+  it("handles an empty repository", async () => {
+    const root = await makeTempDir();
+
+    await expect(detectProject(root)).resolves.toMatchObject({
+      packageManager: "unknown",
+      languages: [],
+      directories: [],
+      commands: {
+        install: "",
+        build: "",
+        test: "",
+        lint: "",
+        format: "",
+      },
+    });
+  });
+
+  it("handles malformed package.json conservatively", async () => {
+    const root = await makeTempDir();
+    await writeFile(path.join(root, "package.json"), "{ invalid json");
+
+    await expect(detectProject(root)).resolves.toMatchObject({
+      projectName: path.basename(root),
+      packageManager: "unknown",
+    });
+  });
+
   it("detects package manager, scripts, language, and directories", async () => {
     const root = await makeTempDir();
     await mkdir(path.join(root, "src"));

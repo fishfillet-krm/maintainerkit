@@ -36,4 +36,12 @@ describe("generateFiles", () => {
     expect(result.overwritten).toContain("AGENTS.md");
     expect(await readFile(path.join(root, "AGENTS.md"), "utf8")).toContain("# AGENTS.md");
   });
+
+  it("reports created files when force initializes an empty repository", async () => {
+    const root = await makeTempDir();
+    const result = await generateFiles(await detectProject(root), { force: true });
+
+    expect(result.created).toContain("AGENTS.md");
+    expect(result.overwritten).toHaveLength(0);
+  });
 });
