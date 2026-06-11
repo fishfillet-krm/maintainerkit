@@ -123,6 +123,12 @@ Produces a small, reviewable implementation plan with likely files, steps, tests
 See [Architecture](docs/architecture.md), [Governance](GOVERNANCE.md), and the
 [known limitations](docs/known-limitations.md) for the trust boundaries.
 
+## Evidence
+
+- [Read-only OSS case studies](docs/case-studies.md)
+- [Owner-operated mc-localize adoption pilot](https://github.com/fishfillet-krm/mc-localize/pull/15)
+- [Impact report and baseline metrics](docs/impact-report.md)
+
 ## Development
 
 ```bash

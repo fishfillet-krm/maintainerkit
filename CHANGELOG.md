@@ -10,6 +10,7 @@ The project follows [Semantic Versioning](https://semver.org/).
 
 - OSS governance, community health, security, and application-readiness materials
 - Expanded quality, interoperability, and operational evidence
+- An owner-operated mc-localize adoption pilot and timestamped impact baseline
 
 ## [0.1.0] - 2026-06-11
 
