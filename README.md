@@ -1,0 +1,141 @@
+# MaintainerKit
+
+MaintainerKit is an open-source toolkit for preparing repositories for AI-assisted maintenance. It helps small and mid-sized OSS maintainers safely delegate routine development work to Codex by generating agent instructions, issue templates, PR checklists, triage reports, and implementation plans.
+
+The toolkit keeps humans responsible for product decisions and sensitive changes. It does not write to GitHub, create pull requests, or call an external AI service.
+
+## Why MaintainerKit?
+
+AI coding agents work best when a repository clearly documents its structure, commands, constraints, and approval boundaries. MaintainerKit creates that foundation and turns incomplete issue text into a consistent triage report or implementation plan.
+
+## Requirements
+
+- Node.js 20 or newer
+- pnpm for development
+
+## Installation
+
+The npm package is not published yet. Install from the GitHub repository:
+
+```bash
+git clone https://github.com/fishfillet-krm/maintainerkit.git
+cd maintainerkit
+pnpm install
+pnpm build
+pnpm link --global
+```
+
+Then run:
+
+```bash
+maintainerkit --help
+```
+
+## Quick Start
+
+Prepare the current repository:
+
+```bash
+maintainerkit init
+```
+
+Existing files are preserved. Use `--force` only when you intentionally want to replace generated files:
+
+```bash
+maintainerkit init --force
+```
+
+Triage an issue:
+
+```bash
+maintainerkit triage --text "The app crashes when the config file is missing"
+maintainerkit triage --file issue.md
+```
+
+Generate an implementation plan:
+
+```bash
+maintainerkit plan --text "Start with default settings when no config file exists"
+maintainerkit plan --file issue.md
+```
+
+Generate a prompt for Codex or another AI instead:
+
+```bash
+maintainerkit triage --file issue.md --prompt-only
+maintainerkit plan --file issue.md --prompt-only
+```
+
+## Commands
+
+### `maintainerkit init`
+
+Detects common project metadata and generates:
+
+- `AGENTS.md`
+- GitHub issue and pull request templates
+- `.maintainerkit/config.json`
+- reusable triage and planning prompts
+- maintenance, architecture, and testing documents
+
+Detection uses lockfiles, `package.json`, scripts, conventional directories, and common language files. Unknown commands are left explicit instead of guessed.
+
+### `maintainerkit triage`
+
+Uses deterministic Japanese and English keyword rules to produce:
+
+- issue type and suggested labels
+- priority and difficulty
+- likely affected areas
+- missing information
+- next action and Codex readiness
+
+### `maintainerkit plan`
+
+Produces a small, reviewable implementation plan with likely files, steps, tests, risks, approval requirements, and a pre-PR checklist.
+
+## Using Codex as the Primary Developer
+
+1. Run `maintainerkit init` and review the generated repository guidance.
+2. Triage an issue and resolve missing information.
+3. Generate and approve an implementation plan.
+4. Ask Codex to implement the focused plan.
+5. Review the changes and test results before creating a pull request.
+
+## Safety Design
+
+- Files are not overwritten without `--force`.
+- MaintainerKit does not write to GitHub or create pull requests.
+- Authentication, authorization, security, billing, deployment, and release work is blocked for explicit human approval.
+- Generated plans always contain risks and a pre-PR checklist.
+- Rule-based output is transparent and works without credentials or network access.
+
+## Development
+
+```bash
+pnpm install
+pnpm lint
+pnpm test
+pnpm build
+pnpm format:check
+pnpm test:e2e
+pnpm test:package
+```
+
+## Roadmap
+
+- GitHub issue retrieval and label suggestions
+- Codex work loops with branch and pull request automation
+- changelog and release preparation
+- repository Agent Readiness Score
+
+All future write operations will remain opt-in and approval-gated.
+
+## Repository
+
+- Source: [github.com/fishfillet-krm/maintainerkit](https://github.com/fishfillet-krm/maintainerkit)
+- Issues: [github.com/fishfillet-krm/maintainerkit/issues](https://github.com/fishfillet-krm/maintainerkit/issues)
+
+## License
+
+[MIT](LICENSE)

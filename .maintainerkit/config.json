@@ -1,0 +1,25 @@
+{
+  "projectName": "maintainerkit",
+  "defaultBranch": "main",
+  "packageManager": "pnpm",
+  "commands": {
+    "install": "pnpm install",
+    "build": "pnpm build",
+    "test": "pnpm test",
+    "lint": "pnpm lint",
+    "format": "pnpm format"
+  },
+  "agent": {
+    "name": "Codex",
+    "requirePlanBeforeChanges": true,
+    "allowAutoPr": false,
+    "protectedAreas": [
+      "authentication",
+      "authorization",
+      "release",
+      "deployment",
+      "security",
+      "billing"
+    ]
+  }
+}

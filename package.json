@@ -1,0 +1,60 @@
+{
+  "name": "maintainerkit",
+  "version": "0.1.0",
+  "description": "Prepare repositories for safe AI-assisted maintenance.",
+  "author": "fishfillet-krm",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fishfillet-krm/maintainerkit.git"
+  },
+  "homepage": "https://github.com/fishfillet-krm/maintainerkit#readme",
+  "bugs": {
+    "url": "https://github.com/fishfillet-krm/maintainerkit/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "bin": {
+    "maintainerkit": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:e2e": "node scripts/cli-smoke.mjs",
+    "test:package": "node scripts/package-smoke.mjs",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepack": "pnpm build"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@11.1.2",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "oss",
+    "maintenance",
+    "cli",
+    "ai"
+  ],
+  "dependencies": {
+    "commander": "^14.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "@types/node": "^22.15.29",
+    "eslint": "^9.28.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.0",
+    "vitest": "^3.2.1"
+  }
+}
