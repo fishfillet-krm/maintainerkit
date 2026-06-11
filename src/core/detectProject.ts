@@ -65,9 +65,8 @@ function buildCommands(
   manager: PackageManager,
   scripts: Record<string, string> = {},
 ): ProjectCommands {
-  const executable = manager === "unknown" ? "npm" : manager;
   return {
-    install: `${executable} install`,
+    install: manager === "unknown" ? "" : `${manager} install`,
     build: commandFor(manager, "build", scripts),
     test: commandFor(manager, "test", scripts),
     lint: commandFor(manager, "lint", scripts),

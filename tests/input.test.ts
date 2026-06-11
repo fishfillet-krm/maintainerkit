@@ -22,4 +22,11 @@ describe("readIssueInput", () => {
     await expect(readIssueInput({ text: "x", file: "x.md" })).rejects.toThrow("exactly one");
     await expect(readIssueInput({ text: "  " })).rejects.toThrow("must not be empty");
   });
+
+  it("reports an unreadable input file", async () => {
+    const root = await makeTempDir();
+    await expect(readIssueInput({ file: "missing.md", cwd: root })).rejects.toThrow(
+      "Could not read issue file",
+    );
+  });
 });

@@ -3,6 +3,7 @@
 ## Commands
 
 - Test: `pnpm test`
+- Coverage: `pnpm test:coverage`
 - Lint: `pnpm lint`
 - Build: `pnpm build`
 - Format check: `pnpm format:check`
@@ -15,9 +16,12 @@ Before a pull request, run:
 
 ```bash
 pnpm lint
-pnpm test
+pnpm test:coverage
 pnpm build
 pnpm format:check
 pnpm test:e2e
 pnpm test:package
 ```
+
+Coverage measures deterministic core and utility modules. CLI adapters are exercised by the built
+CLI and packed-package smoke tests instead.

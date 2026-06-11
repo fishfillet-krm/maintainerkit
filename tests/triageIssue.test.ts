@@ -31,6 +31,18 @@ describe("triageIssue", () => {
     expect(result.affectedAreas).toEqual(expect.arrayContaining(["CLI", "tests"]));
   });
 
+  it("preserves Unicode text in summaries", () => {
+    const result = triageIssue("設定画面で絵文字🚀を表示できるようにしたい");
+    expect(result.summary).toContain("🚀");
+    expect(result.type).toBe("feature");
+  });
+
+  it("truncates very long first lines", () => {
+    const result = triageIssue(`Add support for ${"x".repeat(300)}`);
+    expect(result.summary).toHaveLength(160);
+    expect(result.summary.endsWith("...")).toBe(true);
+  });
+
   it("classifies README work as docs", () => {
     expect(triageIssue("READMEのインストール手順を更新したい").type).toBe("docs");
   });
