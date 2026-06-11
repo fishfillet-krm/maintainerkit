@@ -23,7 +23,9 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm verify
       - name: Pack npm artifact
-        run: npm pack --pack-destination release
+        run: |
+          mkdir -p release
+          npm pack --pack-destination release
       - name: Generate checksum
         working-directory: release
         run: sha256sum maintainerkit-*.tgz > SHA256SUMS
