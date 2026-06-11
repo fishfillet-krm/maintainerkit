@@ -2,5 +2,6 @@ node_modules/
 dist/
 coverage/
 .case-study-work/
+work/
 .DS_Store
 *.log

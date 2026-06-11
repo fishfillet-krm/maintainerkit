@@ -10,9 +10,10 @@ Official program: https://developers.openai.com/community/codex-for-oss
 - License: MIT
 - Primary maintainer: https://github.com/fishfillet-krm
 - CI: https://github.com/fishfillet-krm/maintainerkit/actions
-- Release: pending `v0.1.0`
-- Operational case studies: pending
-- Real adoption pilot: pending `fishfillet-krm/mc-localize`
+- Release: https://github.com/fishfillet-krm/maintainerkit/releases/tag/v0.1.0
+- Operational case studies: https://github.com/fishfillet-krm/maintainerkit/blob/main/docs/case-studies.md
+- Owner-operated adoption pilot: https://github.com/fishfillet-krm/mc-localize/pull/15
+- Impact report: https://github.com/fishfillet-krm/maintainerkit/blob/main/docs/impact-report.md
 
 ## Draft: Maintainer Role
 
@@ -42,8 +43,8 @@ Official program: https://developers.openai.com/community/codex-for-oss
 | -------------------------------- | ------------------------------------ | -------------------------------------------- |
 | Public GitHub profile            | `fishfillet-krm`                     | Ready, profile text can be improved manually |
 | Public OSS repository            | MaintainerKit                        | Ready                                        |
-| Primary/core maintainer role     | Governance, commit history, releases | In progress                                  |
-| Project importance and usage     | README, case studies, pilot, metrics | In progress                                  |
+| Primary/core maintainer role     | Governance, commit history, release  | Ready                                        |
+| Project importance and usage     | README, case studies, pilot, metrics | Ready with early-project limitation          |
 | API credits use                  | Draft above                          | Ready                                        |
 | OpenAI Organization ID           | Human-supplied value                 | **Blocked on human**                         |
 | Applicant name and ChatGPT email | Human-supplied values                | **Blocked on human**                         |
@@ -55,8 +56,16 @@ Official program: https://developers.openai.com/community/codex-for-oss
 - [ ] Insert applicant name
 - [ ] Insert ChatGPT account email
 - [ ] Insert OpenAI Organization ID
-- [ ] Replace all pending evidence links
-- [ ] Recheck every metric with a timestamp
-- [ ] Confirm each form response remains within 500 characters
+- [x] Replace pending evidence links
+- [x] Record metrics with a timestamp
+- [x] Confirm each form response remains within 500 characters
 - [ ] Read and accept the program terms
 - [ ] Submit the form manually
+
+## Response Lengths
+
+Measured as plain text on 2026-06-11:
+
+- Maintainer role: 353 characters
+- Project importance and usage: 394 characters
+- Credits use: 353 characters
