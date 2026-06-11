@@ -31,12 +31,12 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepack": "pnpm build"
+    "prepack": "npm run build"
   },
   "engines": {
     "node": ">=20"
   },
-  "packageManager": "pnpm@11.1.2",
+  "packageManager": "pnpm@10.34.2",
   "license": "MIT",
   "keywords": [
     "codex",

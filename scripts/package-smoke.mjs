@@ -7,20 +7,28 @@ import { spawnSync } from "node:child_process";
 const root = path.resolve(import.meta.dirname, "..");
 const outputDirectory = await mkdtemp(path.join(os.tmpdir(), "maintainerkit-pack-"));
 const installDirectory = await mkdtemp(path.join(os.tmpdir(), "maintainerkit-install-"));
-const pnpmCommand = process.platform === "win32" ? "pnpm.cmd" : "pnpm";
 const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
+const npmCache = path.join(installDirectory, ".npm-cache");
 
-const packed = spawnSync(pnpmCommand, ["pack", "--pack-destination", outputDirectory], {
-  cwd: root,
-  encoding: "utf8",
-});
+const packed = spawnSync(
+  npmCommand,
+  ["pack", "--ignore-scripts", "--pack-destination", outputDirectory],
+  {
+    cwd: root,
+    encoding: "utf8",
+    env: {
+      ...process.env,
+      npm_config_cache: npmCache,
+    },
+  },
+);
 assert.equal(packed.status, 0, packed.stderr);
 
 const tarballName = packed.stdout
   .trim()
   .split(/\r?\n/)
   .findLast((line) => line.endsWith(".tgz"));
-assert.ok(tarballName, "pnpm pack did not report a tarball.");
+assert.ok(tarballName, "npm pack did not report a tarball.");
 const tarball = path.isAbsolute(tarballName)
   ? tarballName
   : path.join(outputDirectory, path.basename(tarballName));
@@ -33,7 +41,7 @@ const installed = spawnSync(
     encoding: "utf8",
     env: {
       ...process.env,
-      npm_config_cache: path.join(installDirectory, ".npm-cache"),
+      npm_config_cache: npmCache,
     },
   },
 );
