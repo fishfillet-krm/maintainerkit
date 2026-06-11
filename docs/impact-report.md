@@ -43,10 +43,13 @@ maintainer adoption.
 
 ## Release Evidence
 
-The `v0.1.0` release is expected at:
+The [`v0.1.0` release](https://github.com/fishfillet-krm/maintainerkit/releases/tag/v0.1.0)
+was published on 2026-06-12 at 07:13 JST by the
+[release workflow](https://github.com/fishfillet-krm/maintainerkit/actions/runs/27380734928).
 
-https://github.com/fishfillet-krm/maintainerkit/releases/tag/v0.1.0
-
-The release workflow verifies the repository, builds the npm tarball, generates SHA-256 checksums
-and a CycloneDX SBOM, and uploads them to GitHub. npm publication remains a separate human
-approval gate.
+- The workflow passed the complete verification suite before packaging.
+- `maintainerkit-0.1.0.tgz` contains 64 published files and excludes source, tests, and GitHub
+  configuration.
+- The downloaded tarball matches the published `SHA256SUMS` entry.
+- The SBOM is CycloneDX 1.6 and records 273 components.
+- npm publication remains a separate human approval gate and has not occurred.
