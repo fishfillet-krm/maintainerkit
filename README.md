@@ -140,7 +140,6 @@ for the trust boundaries.
 
 - [Read-only OSS case studies](https://github.com/fishfillet-krm/maintainerkit/blob/main/docs/case-studies.md)
 - [Owner-operated mc-localize adoption pilot](https://github.com/fishfillet-krm/mc-localize/pull/15)
-- [Impact report and baseline metrics](https://github.com/fishfillet-krm/maintainerkit/blob/main/docs/impact-report.md)
 
 ## Development
 

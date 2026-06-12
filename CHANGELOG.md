@@ -12,7 +12,7 @@ The project follows [Semantic Versioning](https://semver.org/).
 
 - Update npm installation instructions and make README links work on both npm and GitHub
 - Clarify that `triage` and `plan` are local rule-based commands that do not call an AI model
-- Expand contribution guidance, release operations, roadmap status, and public profile drafts
+- Expand contribution guidance, release operations, and roadmap status
 - Replace version-specific or pre-publication wording that was no longer current
 
 ## [0.1.1] - 2026-06-12
@@ -34,7 +34,7 @@ The project follows [Semantic Versioning](https://semver.org/).
 - Rule-based `triage` and `plan` commands
 - Prompt-only output for Codex and other AI assistants
 - Cross-platform tests for macOS, Linux, and Windows
-- OSS governance, community health, security, and application-readiness materials
+- OSS governance, community health, and security materials
 - Expanded quality, interoperability, and operational evidence
 - An owner-operated mc-localize adoption pilot and timestamped impact baseline
 
