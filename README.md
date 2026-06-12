@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/fishfillet-krm/maintainerkit/actions/workflows/ci.yml/badge.svg)](https://github.com/fishfillet-krm/maintainerkit/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/fishfillet-krm/maintainerkit?display_name=tag)](https://github.com/fishfillet-krm/maintainerkit/releases)
+[![npm](https://img.shields.io/npm/v/maintainerkit)](https://www.npmjs.com/package/maintainerkit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-20%20%7C%2022%20%7C%2024-43853d)](package.json)
 
@@ -25,20 +26,22 @@ AI coding agents work best when a repository clearly documents its structure, co
 
 ## Installation
 
-The npm package is not published yet. Install from the GitHub repository:
+Install the CLI from npm:
 
 ```bash
-git clone https://github.com/fishfillet-krm/maintainerkit.git
-cd maintainerkit
-pnpm install
-pnpm build
-pnpm link --global
+npm install --global maintainerkit
 ```
 
 Then run:
 
 ```bash
 maintainerkit --help
+```
+
+You can also run a one-off command without a global installation:
+
+```bash
+npx maintainerkit --help
 ```
 
 ## Quick Start
