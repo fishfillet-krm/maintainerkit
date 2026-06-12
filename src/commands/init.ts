@@ -7,5 +7,8 @@ export async function runInit(options: { force?: boolean; cwd?: string }): Promi
 
   for (const file of result.created) console.log(`created ${file}`);
   for (const file of result.overwritten) console.log(`overwritten ${file}`);
-  for (const file of result.skipped) console.error(`skipped ${file} (already exists)`);
+  for (const file of result.skipped) console.log(`skipped ${file} (already exists)`);
+  console.log(
+    `summary: ${result.created.length} created, ${result.overwritten.length} overwritten, ${result.skipped.length} skipped`,
+  );
 }
