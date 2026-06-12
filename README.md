@@ -101,7 +101,8 @@ Detects common project metadata and generates:
 Detection uses lockfiles, `package.json` scripts, conventional directories, and common language
 metadata. Python commands are inferred from configured `pyproject.toml` tools, Rust commands from
 `Cargo.toml`, and Go commands from `go.mod`. Unknown commands remain blank instead of being
-guessed.
+guessed. The default branch is read from the local `origin/HEAD` symbolic reference; when that
+reference is unavailable, the generated configuration uses `unknown` for maintainer review.
 
 ### `maintainerkit triage`
 

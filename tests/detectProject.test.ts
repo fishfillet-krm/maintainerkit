@@ -1,10 +1,14 @@
+import { execFile } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { promisify } from "node:util";
 import { afterEach, describe, expect, it } from "vitest";
 import { detectProject } from "../src/core/detectProject.js";
 import { makeTempDir, removeTempDirs } from "./helpers.js";
 
 afterEach(removeTempDirs);
+
+const execFileAsync = promisify(execFile);
 
 describe("detectProject", () => {
   it("handles an empty repository", async () => {
@@ -12,6 +16,7 @@ describe("detectProject", () => {
 
     await expect(detectProject(root)).resolves.toMatchObject({
       packageManager: "unknown",
+      defaultBranch: "unknown",
       languages: [],
       directories: [],
       commands: {
@@ -190,5 +195,24 @@ describe("detectProject", () => {
       test: "npm run test",
       lint: "cargo clippy --all-targets --all-features",
     });
+  });
+
+  it("detects the default branch from origin/HEAD", async () => {
+    const root = await makeTempDir();
+    await execFileAsync("git", ["init"], { cwd: root });
+    await execFileAsync(
+      "git",
+      ["symbolic-ref", "refs/remotes/origin/HEAD", "refs/remotes/origin/stable"],
+      { cwd: root },
+    );
+
+    expect((await detectProject(root)).defaultBranch).toBe("stable");
+  });
+
+  it("does not mistake the current branch for the default branch", async () => {
+    const root = await makeTempDir();
+    await execFileAsync("git", ["init", "-b", "temporary-work"], { cwd: root });
+
+    expect((await detectProject(root)).defaultBranch).toBe("unknown");
   });
 });
