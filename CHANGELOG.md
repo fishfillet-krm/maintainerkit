@@ -6,6 +6,15 @@ The project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-06-12
+
+### Changed
+
+- Update npm installation instructions and make README links work on both npm and GitHub
+- Clarify that `triage` and `plan` are local rule-based commands that do not call an AI model
+- Expand contribution guidance, release operations, roadmap status, and public profile drafts
+- Replace version-specific or pre-publication wording that was no longer current
+
 ## [0.1.1] - 2026-06-12
 
 ### Fixed
@@ -29,6 +38,7 @@ The project follows [Semantic Versioning](https://semver.org/).
 - Expanded quality, interoperability, and operational evidence
 - An owner-operated mc-localize adoption pilot and timestamped impact baseline
 
-[Unreleased]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/fishfillet-krm/maintainerkit/releases/tag/v0.1.0

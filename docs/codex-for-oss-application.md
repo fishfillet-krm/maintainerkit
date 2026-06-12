@@ -11,8 +11,7 @@ Official program: https://developers.openai.com/community/codex-for-oss
 - License: MIT
 - Primary maintainer: https://github.com/fishfillet-krm
 - CI: https://github.com/fishfillet-krm/maintainerkit/actions
-- Release: https://github.com/fishfillet-krm/maintainerkit/releases/tag/v0.1.1
-- Release workflow: https://github.com/fishfillet-krm/maintainerkit/actions/runs/27385917399
+- Release: https://github.com/fishfillet-krm/maintainerkit/releases/tag/v0.1.2
 - Operational case studies: https://github.com/fishfillet-krm/maintainerkit/blob/main/docs/case-studies.md
 - Owner-operated adoption pilot: https://github.com/fishfillet-krm/mc-localize/pull/15
 - Impact report: https://github.com/fishfillet-krm/maintainerkit/blob/main/docs/impact-report.md
@@ -45,7 +44,7 @@ Official program: https://developers.openai.com/community/codex-for-oss
 | -------------------------------- | ------------------------------------ | -------------------------------------------- |
 | Public GitHub profile            | `fishfillet-krm`                     | Ready, profile text can be improved manually |
 | Public OSS repository            | MaintainerKit                        | Ready                                        |
-| Primary/core maintainer role     | Governance, commit history, v0.1.1   | Ready                                        |
+| Primary/core maintainer role     | Governance, commit history, releases | Ready                                        |
 | Project importance and usage     | README, case studies, pilot, metrics | Ready with early-project limitation          |
 | API credits use                  | Draft above                          | Ready                                        |
 | OpenAI Organization ID           | Human-supplied value                 | **Blocked on human**                         |

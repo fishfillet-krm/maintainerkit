@@ -43,22 +43,23 @@ maintainer adoption.
 
 ## Release Evidence
 
-The [`v0.1.1` release](https://github.com/fishfillet-krm/maintainerkit/releases/tag/v0.1.1)
+The [`v0.1.2` release](https://github.com/fishfillet-krm/maintainerkit/releases/tag/v0.1.2)
 was published on 2026-06-12 by the
-[release workflow](https://github.com/fishfillet-krm/maintainerkit/actions/runs/27385917399).
+automated Release workflow.
 
 - The workflow passed the complete verification suite before packaging.
-- `maintainerkit-0.1.1.tgz` contains 64 published files and excludes source, tests, and GitHub
+- `maintainerkit-0.1.2.tgz` contains the published CLI, type declarations, README files, license,
+  and package metadata while excluding source, tests, and GitHub
   configuration.
 - The downloaded tarball matches the published `SHA256SUMS` entry.
 - The SBOM is CycloneDX 1.6 and records 273 components.
 
 ## npm Distribution
 
-[`maintainerkit@0.1.1`](https://www.npmjs.com/package/maintainerkit) was published on 2026-06-12
+[`maintainerkit@0.1.2`](https://www.npmjs.com/package/maintainerkit) was published on 2026-06-12
 by the npm account `fishfillet`.
 
-- npm reports `0.1.1` as the `latest` dist-tag.
+- npm reports `0.1.2` as the `latest` dist-tag.
 - Registry metadata preserves the `maintainerkit` binary and Node.js 20+ requirement.
 - A clean registry tarball install successfully ran `--help`, `triage`, `plan`, and `init`.
 - The npm account uses two-factor authentication for authentication and writes.

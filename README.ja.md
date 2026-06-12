@@ -1,9 +1,12 @@
 # MaintainerKit
 
-[English](README.md)
+[English](https://github.com/fishfillet-krm/maintainerkit#readme)
 
 MaintainerKitは、Codexを含むAIエージェントがOSSリポジトリを安全に継続保守できるよう、
 リポジトリ情報、作業ルール、Issueトリアージ、実装計画を整備するオープンソースCLIです。
+
+`triage`と`plan`は、ローカルで動作する決定的なルールベース解析です。AIモデルや外部APIは
+呼び出しません。Codexなどへ渡す入力を生成する場合は`--prompt-only`を使用します。
 
 ## 安全設計
 
@@ -15,6 +18,7 @@ MaintainerKitは、Codexを含むAIエージェントがOSSリポジトリを安
 ## 必要環境
 
 - Node.js 20以上
+- npm、pnpmなどのNode.jsパッケージインストーラー
 - 開発時はpnpm 10.34.2
 
 ## インストール

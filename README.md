@@ -3,26 +3,33 @@
 [![CI](https://github.com/fishfillet-krm/maintainerkit/actions/workflows/ci.yml/badge.svg)](https://github.com/fishfillet-krm/maintainerkit/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/fishfillet-krm/maintainerkit?display_name=tag)](https://github.com/fishfillet-krm/maintainerkit/releases)
 [![npm](https://img.shields.io/npm/v/maintainerkit)](https://www.npmjs.com/package/maintainerkit)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-20%20%7C%2022%20%7C%2024-43853d)](package.json)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/fishfillet-krm/maintainerkit/blob/main/LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-20%20%7C%2022%20%7C%2024-43853d)](https://github.com/fishfillet-krm/maintainerkit/blob/main/package.json)
 
-[日本語](README.ja.md)
+[日本語](https://github.com/fishfillet-krm/maintainerkit/blob/main/README.ja.md)
 
 MaintainerKit is an open-source toolkit for preparing repositories for AI-assisted maintenance. It helps small and mid-sized OSS maintainers safely delegate routine development work to Codex by generating agent instructions, issue templates, PR checklists, triage reports, and implementation plans.
 
 The toolkit keeps humans responsible for product decisions and sensitive changes. It does not write to GitHub, create pull requests, or call an external AI service.
 
-> **Project status:** MaintainerKit is an early `0.x` project. Its rule-based output and generated
-> files require maintainer review. See [known limitations](docs/known-limitations.md).
+> **Project status:** MaintainerKit is an early `0.x` project. Its output and generated files
+> require maintainer review. See the
+> [known limitations](https://github.com/fishfillet-krm/maintainerkit/blob/main/docs/known-limitations.md).
 
 ## Why MaintainerKit?
 
 AI coding agents work best when a repository clearly documents its structure, commands, constraints, and approval boundaries. MaintainerKit creates that foundation and turns incomplete issue text into a consistent triage report or implementation plan.
 
+`triage` and `plan` are deterministic, local, rule-based commands. They do not call an AI model.
+Use `--prompt-only` when you want MaintainerKit to prepare repository-aware input for Codex or
+another AI assistant.
+
 ## Requirements
 
 - Node.js 20 or newer
-- pnpm for development
+- npm, pnpm, or another Node.js package installer
+
+Contributors also need pnpm 10.34.2.
 
 ## Installation
 
@@ -123,14 +130,17 @@ Produces a small, reviewable implementation plan with likely files, steps, tests
 - Generated plans always contain risks and a pre-PR checklist.
 - Rule-based output is transparent and works without credentials or network access.
 
-See [Architecture](docs/architecture.md), [Governance](GOVERNANCE.md), and the
-[known limitations](docs/known-limitations.md) for the trust boundaries.
+See
+[Architecture](https://github.com/fishfillet-krm/maintainerkit/blob/main/docs/architecture.md),
+[Governance](https://github.com/fishfillet-krm/maintainerkit/blob/main/GOVERNANCE.md), and the
+[known limitations](https://github.com/fishfillet-krm/maintainerkit/blob/main/docs/known-limitations.md)
+for the trust boundaries.
 
 ## Evidence
 
-- [Read-only OSS case studies](docs/case-studies.md)
+- [Read-only OSS case studies](https://github.com/fishfillet-krm/maintainerkit/blob/main/docs/case-studies.md)
 - [Owner-operated mc-localize adoption pilot](https://github.com/fishfillet-krm/mc-localize/pull/15)
-- [Impact report and baseline metrics](docs/impact-report.md)
+- [Impact report and baseline metrics](https://github.com/fishfillet-krm/maintainerkit/blob/main/docs/impact-report.md)
 
 ## Development
 
@@ -164,9 +174,9 @@ All future write operations will remain opt-in and approval-gated.
 - Source: [github.com/fishfillet-krm/maintainerkit](https://github.com/fishfillet-krm/maintainerkit)
 - Issues: [github.com/fishfillet-krm/maintainerkit/issues](https://github.com/fishfillet-krm/maintainerkit/issues)
 - Discussions: [github.com/fishfillet-krm/maintainerkit/discussions](https://github.com/fishfillet-krm/maintainerkit/discussions)
-- Roadmap: [ROADMAP.md](ROADMAP.md)
-- Support: [SUPPORT.md](SUPPORT.md)
+- Roadmap: [ROADMAP.md](https://github.com/fishfillet-krm/maintainerkit/blob/main/ROADMAP.md)
+- Support: [SUPPORT.md](https://github.com/fishfillet-krm/maintainerkit/blob/main/SUPPORT.md)
 
 ## License
 
-[MIT](LICENSE)
+[MIT](https://github.com/fishfillet-krm/maintainerkit/blob/main/LICENSE)

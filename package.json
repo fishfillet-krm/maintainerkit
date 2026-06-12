@@ -1,6 +1,6 @@
 {
   "name": "maintainerkit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Prepare repositories for safe AI-assisted maintenance.",
   "author": "fishfillet-krm",
   "repository": {
