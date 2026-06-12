@@ -1,3 +1,4 @@
+import { execFile } from "node:child_process";
 import { access, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import type { PackageManager, ProjectCommands, ProjectInfo } from "../types.js";
@@ -34,6 +35,27 @@ async function readTextFile(rootDir: string, filename: string): Promise<string |
   } catch {
     return undefined;
   }
+}
+
+async function gitOutput(rootDir: string, args: string[]): Promise<string | undefined> {
+  return new Promise((resolve) => {
+    execFile("git", args, { cwd: rootDir, encoding: "utf8" }, (error, stdout) => {
+      resolve(error ? undefined : stdout.trim());
+    });
+  });
+}
+
+async function detectDefaultBranch(rootDir: string): Promise<string> {
+  const remoteHead = await gitOutput(rootDir, [
+    "symbolic-ref",
+    "--quiet",
+    "--short",
+    "refs/remotes/origin/HEAD",
+  ]);
+  if (!remoteHead?.startsWith("origin/")) return "unknown";
+
+  const branch = remoteHead.slice("origin/".length);
+  return branch || "unknown";
 }
 
 async function detectPackageManager(
@@ -208,11 +230,12 @@ export async function detectProject(rootDir = process.cwd()): Promise<ProjectInf
   const languages = await detectLanguages(resolvedRoot, entries);
   const nodeCommands = buildCommands(packageManager, packageJson?.scripts);
   const nonNodeCommands = await detectNonNodeCommands(resolvedRoot, entries);
+  const defaultBranch = await detectDefaultBranch(resolvedRoot);
 
   return {
     rootDir: resolvedRoot,
     projectName: packageJson?.name ?? path.basename(resolvedRoot),
-    defaultBranch: "main",
+    defaultBranch,
     packageManager,
     languages,
     directories,

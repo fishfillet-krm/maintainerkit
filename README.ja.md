@@ -41,6 +41,8 @@ maintainerkit plan --file issue.md --prompt-only
 
 `init`は、`package.json` scriptsに加え、設定済みの`pyproject.toml`ツール、`Cargo.toml`、
 `go.mod`から保守コマンドを保守的に推定します。根拠がないコマンドは推測せず空欄にします。
+デフォルトブランチはローカルの`origin/HEAD`から取得し、確認できない場合は`unknown`として
+人間の確認対象にします。
 
 ## 開発
 
