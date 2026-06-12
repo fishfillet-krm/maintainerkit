@@ -6,6 +6,19 @@ The project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-06-12
+
+### Added
+
+- Generate implementation steps and validation guidance tailored to each issue type
+- Supplement triage affected areas with relevant directories that exist in the current repository
+- Detect the default branch from the local `origin/HEAD` symbolic reference
+
+### Changed
+
+- Report skipped `init` files on stdout and print a created, overwritten, and skipped summary
+- Use `unknown` instead of assuming `main` when the default branch cannot be verified
+
 ## [0.1.3] - 2026-06-12
 
 ### Added
@@ -49,7 +62,8 @@ The project follows [Semantic Versioning](https://semver.org/).
 - Expanded quality, interoperability, and operational evidence
 - An owner-operated mc-localize adoption pilot and timestamped impact baseline
 
-[Unreleased]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.4...HEAD
+[0.1.4]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.0...v0.1.1
