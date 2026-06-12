@@ -30,6 +30,6 @@ Results are recorded in [case-studies.json](case-studies.json) with exact commit
 
 ## Interpretation
 
-Detection success means MaintainerKit recognized repository signals available to its v0.1.0
+Detection success means MaintainerKit recognized repository signals available to its current
 heuristics. Empty commands and missed languages or directories are evidence of current limitations,
 not silently corrected results.

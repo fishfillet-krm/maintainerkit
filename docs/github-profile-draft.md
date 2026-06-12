@@ -13,8 +13,9 @@ Use the maintainer's real or established public name.
 
 ## Suggested Website
 
-> https://github.com/fishfillet-krm/maintainerkit
+> https://www.npmjs.com/package/maintainerkit
 
 ## Suggested Pinned Repository
 
-Pin `fishfillet-krm/maintainerkit` after the first release and operational case studies are public.
+Pin `fishfillet-krm/maintainerkit`. Public releases, npm distribution, operational case studies,
+and the owner-operated adoption pilot are available as supporting evidence.

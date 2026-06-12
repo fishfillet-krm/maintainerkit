@@ -2,10 +2,12 @@
 
 ## v0.1.x: Foundation
 
-- Validate repository detection across representative TypeScript, Python, Rust, and Go projects
-- Improve generated guidance and safety documentation
-- Establish reproducible releases and security checks
-- Collect honest adoption and case-study evidence
+- [x] Validate repository detection across representative TypeScript, Python, Rust, and Go projects
+- [x] Improve generated guidance and safety documentation
+- [x] Establish reproducible GitHub releases and security checks
+- [x] Publish an installable npm package
+- [x] Collect honest adoption and case-study evidence
+- [ ] Improve conservative Python, Rust, Go, and monorepo command detection
 
 ## v0.2.0: Read-only GitHub Integration
 
