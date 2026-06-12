@@ -54,16 +54,22 @@ const initDirectory = await mkdtemp(path.join(os.tmpdir(), "maintainerkit-init-"
 const firstInit = run(["init"], { cwd: initDirectory });
 assert.equal(firstInit.status, 0);
 assert.match(firstInit.stdout, /created AGENTS\.md/);
+assert.match(firstInit.stdout, /summary: \d+ created, 0 overwritten, 0 skipped/);
+assert.equal(firstInit.stderr, "");
 
 await writeFile(path.join(initDirectory, "AGENTS.md"), "custom content\n");
 const secondInit = run(["init"], { cwd: initDirectory });
 assert.equal(secondInit.status, 0);
-assert.match(secondInit.stderr, /skipped AGENTS\.md/);
+assert.match(secondInit.stdout, /skipped AGENTS\.md/);
+assert.match(secondInit.stdout, /summary: 0 created, 0 overwritten, \d+ skipped/);
+assert.equal(secondInit.stderr, "");
 assert.equal(await readFile(path.join(initDirectory, "AGENTS.md"), "utf8"), "custom content\n");
 
 const forcedInit = run(["init", "--force"], { cwd: initDirectory });
 assert.equal(forcedInit.status, 0);
 assert.match(forcedInit.stdout, /overwritten AGENTS\.md/);
+assert.match(forcedInit.stdout, /summary: 0 created, \d+ overwritten, 0 skipped/);
+assert.equal(forcedInit.stderr, "");
 assert.match(await readFile(path.join(initDirectory, "AGENTS.md"), "utf8"), /# AGENTS\.md/);
 
 const config = JSON.parse(
