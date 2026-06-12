@@ -1,6 +1,6 @@
 {
   "name": "maintainerkit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Prepare repositories for safe AI-assisted maintenance.",
   "author": "fishfillet-krm",
   "repository": {
@@ -16,7 +16,7 @@
   },
   "type": "module",
   "bin": {
-    "maintainerkit": "./dist/index.js"
+    "maintainerkit": "dist/index.js"
   },
   "files": [
     "dist",
@@ -24,7 +24,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && node scripts/set-bin-mode.mjs",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "node scripts/cli-smoke.mjs",
