@@ -17,15 +17,14 @@ MaintainerKitは、Codexを含むAIエージェントがOSSリポジトリを安
 - Node.js 20以上
 - 開発時はpnpm 10.34.2
 
-## GitHubからの導入
+## インストール
 
 ```bash
-git clone https://github.com/fishfillet-krm/maintainerkit.git
-cd maintainerkit
-pnpm install
-pnpm build
-pnpm link --global
+npm install --global maintainerkit
+maintainerkit --help
 ```
+
+グローバルインストールせず、`npx maintainerkit --help`でも実行できます。
 
 ## 基本コマンド
 
