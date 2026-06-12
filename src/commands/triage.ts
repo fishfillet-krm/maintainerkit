@@ -1,3 +1,4 @@
+import { detectProject } from "../core/detectProject.js";
 import { createTriagePrompt } from "../core/prompts.js";
 import { renderTriage } from "../core/renderers.js";
 import { triageIssue } from "../core/triageIssue.js";
@@ -10,5 +11,10 @@ export async function runTriage(options: {
   cwd?: string;
 }): Promise<void> {
   const issue = await readIssueInput(options);
-  console.log(options.promptOnly ? createTriagePrompt(issue) : renderTriage(triageIssue(issue)));
+  if (options.promptOnly) {
+    console.log(createTriagePrompt(issue));
+    return;
+  }
+  const project = await detectProject(options.cwd);
+  console.log(renderTriage(triageIssue(issue, project)));
 }

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
@@ -29,6 +29,13 @@ assert.match(triage.stdout, /## Type\nbug/);
 
 const issueDirectory = await mkdtemp(path.join(os.tmpdir(), "maintainerkit-cli-"));
 await writeFile(path.join(issueDirectory, "issue.md"), "READMEの説明を更新したい\n");
+await mkdir(path.join(issueDirectory, "tests"));
+const contextualTriage = run(["triage", "--text", "Increase test coverage"], {
+  cwd: issueDirectory,
+});
+assert.equal(contextualTriage.status, 0);
+assert.match(contextualTriage.stdout, /- tests\//);
+
 const plan = run(["plan", "--file", "issue.md"], { cwd: issueDirectory });
 assert.equal(plan.status, 0);
 assert.match(plan.stdout, /# Implementation Plan/);

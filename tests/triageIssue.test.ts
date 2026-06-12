@@ -1,5 +1,22 @@
 import { describe, expect, it } from "vitest";
 import { triageIssue } from "../src/core/triageIssue.js";
+import type { ProjectInfo } from "../src/types.js";
+
+const project: ProjectInfo = {
+  rootDir: "/fixture",
+  projectName: "fixture",
+  defaultBranch: "main",
+  packageManager: "pnpm",
+  languages: ["TypeScript"],
+  directories: ["src", "tests", "docs"],
+  commands: {
+    install: "pnpm install",
+    build: "pnpm build",
+    test: "pnpm test",
+    lint: "pnpm lint",
+    format: "pnpm format",
+  },
+};
 
 describe("triageIssue", () => {
   it("classifies a crash as a bug", () => {
@@ -62,5 +79,28 @@ describe("triageIssue", () => {
 
     expect(result.readiness).toBe("blocked");
     expect(result.humanApprovalRequired).toBe(true);
+  });
+
+  it("adds only repository directories relevant to affected areas", () => {
+    const result = triageIssue("The CLI tests fail when config is missing", project);
+
+    expect(result.affectedAreas).toEqual(
+      expect.arrayContaining(["CLI", "tests", "src/", "tests/"]),
+    );
+    expect(result.affectedAreas).not.toContain("docs/");
+  });
+
+  it("uses the repository's singular test directory when present", () => {
+    const result = triageIssue("Increase test coverage", {
+      ...project,
+      directories: ["src", "test"],
+    });
+
+    expect(result.affectedAreas).toContain("test/");
+    expect(result.affectedAreas).not.toContain("tests/");
+  });
+
+  it("does not invent repository paths when project context is absent", () => {
+    expect(triageIssue("Update the documentation").affectedAreas).toEqual(["documentation"]);
   });
 });

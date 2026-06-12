@@ -110,7 +110,7 @@ function plannedTests(type: ReturnType<typeof triageIssue>["type"]): string[] {
 }
 
 export function planIssue(issue: string, project?: ProjectInfo): ImplementationPlan {
-  const triage = triageIssue(issue);
+  const triage = triageIssue(issue, project);
   const protectedRisk =
     "Changes in protected areas can affect security, access, releases, deployments, or billing.";
 
