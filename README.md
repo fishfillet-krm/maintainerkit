@@ -98,7 +98,10 @@ Detects common project metadata and generates:
 - reusable triage and planning prompts
 - maintenance, architecture, and testing documents
 
-Detection uses lockfiles, `package.json`, scripts, conventional directories, and common language files. Unknown commands are left explicit instead of guessed.
+Detection uses lockfiles, `package.json` scripts, conventional directories, and common language
+metadata. Python commands are inferred from configured `pyproject.toml` tools, Rust commands from
+`Cargo.toml`, and Go commands from `go.mod`. Unknown commands remain blank instead of being
+guessed.
 
 ### `maintainerkit triage`
 
