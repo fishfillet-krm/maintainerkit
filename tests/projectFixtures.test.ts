@@ -13,6 +13,7 @@ interface Fixture {
   packageManager: string;
   languages: string[];
   directories?: string[];
+  commands?: Partial<Record<"install" | "build" | "test" | "lint" | "format", string>>;
 }
 
 const fixtures: Fixture[] = [
@@ -48,13 +49,21 @@ const fixtures: Fixture[] = [
   {
     name: "python",
     files: {
-      "pyproject.toml": '[project]\nname = "python-fixture"\n',
+      "pyproject.toml":
+        '[build-system]\nrequires = ["setuptools"]\n\n[project]\nname = "python-fixture"\ndependencies = ["pytest", "ruff"]\n\n[tool.pytest.ini_options]\ntestpaths = ["tests"]\n\n[tool.ruff]\ntarget-version = "py311"\n',
       "src/python_fixture/__init__.py": "",
       "tests/test_fixture.py": "def test_fixture():\n    assert True\n",
     },
     packageManager: "unknown",
     languages: ["Python"],
     directories: ["src", "tests"],
+    commands: {
+      install: "python -m pip install -e .",
+      build: "python -m build",
+      test: "python -m pytest",
+      lint: "ruff check .",
+      format: "",
+    },
   },
   {
     name: "rust",
@@ -64,6 +73,13 @@ const fixtures: Fixture[] = [
     },
     packageManager: "unknown",
     languages: ["Rust"],
+    commands: {
+      install: "cargo fetch",
+      build: "cargo build",
+      test: "cargo test",
+      lint: "cargo clippy --all-targets --all-features",
+      format: "cargo fmt --all",
+    },
   },
   {
     name: "go",
@@ -73,6 +89,13 @@ const fixtures: Fixture[] = [
     },
     packageManager: "unknown",
     languages: ["Go"],
+    commands: {
+      install: "go mod download",
+      build: "go build ./...",
+      test: "go test ./...",
+      lint: "",
+      format: "",
+    },
   },
   {
     name: "monorepo",
@@ -110,6 +133,9 @@ describe("representative project fixtures", () => {
     expect(project.languages).toEqual(expect.arrayContaining(fixture.languages));
     if (fixture.directories) {
       expect(project.directories).toEqual(expect.arrayContaining(fixture.directories));
+    }
+    if (fixture.commands) {
+      expect(project.commands).toMatchObject(fixture.commands);
     }
 
     const first = await generateFiles(project);

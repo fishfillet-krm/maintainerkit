@@ -98,4 +98,97 @@ describe("detectProject", () => {
 
     expect((await detectProject(root)).packageManager).toBe("yarn");
   });
+
+  it("infers Python commands only from configured tools", async () => {
+    const root = await makeTempDir();
+    await writeFile(
+      path.join(root, "pyproject.toml"),
+      [
+        "[build-system]",
+        'requires = ["hatchling"]',
+        "",
+        "[project]",
+        'name = "fixture"',
+        'dependencies = ["pytest"]',
+        "",
+        "[tool.pytest.ini_options]",
+        'testpaths = ["tests"]',
+        "",
+        "[tool.ruff]",
+        'target-version = "py311"',
+        "",
+        "[tool.ruff.format]",
+        'quote-style = "double"',
+      ].join("\n"),
+    );
+    await writeFile(path.join(root, "uv.lock"), "");
+
+    expect((await detectProject(root)).commands).toEqual({
+      install: "uv sync",
+      build: "python -m build",
+      test: "python -m pytest",
+      lint: "ruff check .",
+      format: "ruff format .",
+    });
+  });
+
+  it("keeps ambiguous Python commands blank", async () => {
+    const root = await makeTempDir();
+    await writeFile(path.join(root, "pyproject.toml"), "[tool.coverage.run]\nbranch = true\n");
+
+    expect((await detectProject(root)).commands).toEqual({
+      install: "",
+      build: "",
+      test: "",
+      lint: "",
+      format: "",
+    });
+  });
+
+  it("infers Cargo commands for Rust repositories", async () => {
+    const root = await makeTempDir();
+    await writeFile(path.join(root, "Cargo.toml"), '[package]\nname = "fixture"\n');
+
+    expect((await detectProject(root)).commands).toEqual({
+      install: "cargo fetch",
+      build: "cargo build",
+      test: "cargo test",
+      lint: "cargo clippy --all-targets --all-features",
+      format: "cargo fmt --all",
+    });
+  });
+
+  it("infers Go commands and requires explicit lint configuration", async () => {
+    const root = await makeTempDir();
+    await writeFile(path.join(root, "go.mod"), "module example.com/fixture\n\ngo 1.23\n");
+    await writeFile(path.join(root, ".golangci.yml"), "linters:\n  enable:\n    - govet\n");
+
+    expect((await detectProject(root)).commands).toEqual({
+      install: "go mod download",
+      build: "go build ./...",
+      test: "go test ./...",
+      lint: "golangci-lint run",
+      format: "",
+    });
+  });
+
+  it("does not replace configured Node scripts with language defaults", async () => {
+    const root = await makeTempDir();
+    await writeFile(
+      path.join(root, "package.json"),
+      JSON.stringify({
+        scripts: {
+          build: "custom-build",
+          test: "custom-test",
+        },
+      }),
+    );
+    await writeFile(path.join(root, "Cargo.toml"), '[package]\nname = "fixture"\n');
+
+    expect((await detectProject(root)).commands).toMatchObject({
+      build: "npm run build",
+      test: "npm run test",
+      lint: "cargo clippy --all-targets --all-features",
+    });
+  });
 });
