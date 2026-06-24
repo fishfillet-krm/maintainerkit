@@ -6,11 +6,49 @@ The project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-06-12
+
 ### Added
 
-- OSS governance, community health, security, and application-readiness materials
-- Expanded quality, interoperability, and operational evidence
-- An owner-operated mc-localize adoption pilot and timestamped impact baseline
+- Generate implementation steps and validation guidance tailored to each issue type
+- Supplement triage affected areas with relevant directories that exist in the current repository
+- Detect the default branch from the local `origin/HEAD` symbolic reference
+
+### Changed
+
+- Report skipped `init` files on stdout and print a created, overwritten, and skipped summary
+- Use `unknown` instead of assuming `main` when the default branch cannot be verified
+
+## [0.1.3] - 2026-06-12
+
+### Added
+
+- Infer conservative maintenance commands from Python, Rust, and Go repository metadata
+- Cover configured and ambiguous non-Node repositories with focused detection tests
+
+### Fixed
+
+- Remove the npm README link to a maintainer-only impact report
+
+## [0.1.2] - 2026-06-12
+
+### Changed
+
+- Update npm installation instructions and make README links work on both npm and GitHub
+- Clarify that `triage` and `plan` are local rule-based commands that do not call an AI model
+- Expand contribution guidance, release operations, and roadmap status
+- Replace version-specific or pre-publication wording that was no longer current
+
+## [0.1.1] - 2026-06-12
+
+### Fixed
+
+- Preserve the executable mode of the packaged CLI entry point for npm installation
+- Normalize the npm `bin` path so the `maintainerkit` command is published correctly
+
+### Changed
+
+- Verify the installed CLI entry point mode during package smoke tests
 
 ## [0.1.0] - 2026-06-11
 
@@ -20,6 +58,13 @@ The project follows [Semantic Versioning](https://semver.org/).
 - Rule-based `triage` and `plan` commands
 - Prompt-only output for Codex and other AI assistants
 - Cross-platform tests for macOS, Linux, and Windows
+- OSS governance, community health, and security materials
+- Expanded quality, interoperability, and operational evidence
+- An owner-operated mc-localize adoption pilot and timestamped impact baseline
 
-[Unreleased]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.4...HEAD
+[0.1.4]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.3...v0.1.4
+[0.1.3]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.2...v0.1.3
+[0.1.2]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.1...v0.1.2
+[0.1.1]: https://github.com/fishfillet-krm/maintainerkit/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/fishfillet-krm/maintainerkit/releases/tag/v0.1.0

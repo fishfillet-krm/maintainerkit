@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access, mkdtemp, readFile } from "node:fs/promises";
+import { access, mkdtemp, readFile, stat } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
@@ -52,6 +52,11 @@ assert.equal(installed.status, 0, installed.stderr || installed.error?.message);
 const packageDirectory = path.join(installDirectory, "node_modules", "maintainerkit");
 for (const relativePath of ["dist/index.js", "dist/index.d.ts", "README.md", "LICENSE"]) {
   await readFile(path.join(packageDirectory, relativePath));
+}
+
+if (process.platform !== "win32") {
+  const binMode = (await stat(path.join(packageDirectory, "dist/index.js"))).mode & 0o777;
+  assert.equal(binMode, 0o755, "The packaged CLI entry point must be executable.");
 }
 
 for (const excludedPath of ["tests", "src", ".github"]) {

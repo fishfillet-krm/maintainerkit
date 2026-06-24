@@ -1,4 +1,11 @@
-import type { Difficulty, IssueType, Priority, Readiness, TriageResult } from "../types.js";
+import type {
+  Difficulty,
+  IssueType,
+  Priority,
+  ProjectInfo,
+  Readiness,
+  TriageResult,
+} from "../types.js";
 
 const typeKeywords: Record<IssueType, string[]> = {
   bug: [
@@ -115,7 +122,7 @@ function summarize(issue: string): string {
   return summary.length > 160 ? `${summary.slice(0, 157)}...` : summary;
 }
 
-function detectAffectedAreas(input: string, type: IssueType): string[] {
+function detectAffectedAreas(input: string, type: IssueType, project?: ProjectInfo): string[] {
   const areas = new Set<string>();
   if (/(readme|docs|documentation|説明|文書|ドキュメント)/i.test(input)) areas.add("documentation");
   if (/(test|coverage|spec|テスト|カバレッジ)/i.test(input)) areas.add("tests");
@@ -124,6 +131,21 @@ function detectAffectedAreas(input: string, type: IssueType): string[] {
   if (protectedKeywords.some((keyword) => includesKeyword(input, keyword)))
     areas.add("protected area");
   if (areas.size === 0) areas.add(type === "docs" ? "documentation" : "application code");
+
+  if (project) {
+    if (areas.has("documentation") && project.directories.includes("docs")) areas.add("docs/");
+    if (areas.has("tests")) {
+      if (project.directories.includes("tests")) areas.add("tests/");
+      else if (project.directories.includes("test")) areas.add("test/");
+    }
+    if (
+      project.directories.includes("src") &&
+      ["application code", "CLI", "configuration"].some((area) => areas.has(area))
+    ) {
+      areas.add("src/");
+    }
+  }
+
   return [...areas];
 }
 
@@ -140,7 +162,7 @@ function assessMissingInformation(issue: string, type: IssueType): string[] {
   return missing;
 }
 
-export function triageIssue(issue: string): TriageResult {
+export function triageIssue(issue: string, project?: ProjectInfo): TriageResult {
   const normalized = issue.toLowerCase();
   const type = classifyType(normalized);
   const humanApprovalRequired = protectedKeywords.some((keyword) =>
@@ -179,7 +201,7 @@ export function triageIssue(issue: string): TriageResult {
     suggestedLabels: [...labels],
     priority,
     difficulty,
-    affectedAreas: detectAffectedAreas(normalized, type),
+    affectedAreas: detectAffectedAreas(normalized, type, project),
     missingInformation,
     suggestedNextAction:
       readiness === "blocked"

@@ -5,3 +5,9 @@ coverage/
 work/
 .DS_Store
 *.log
+
+# Local maintainer and application materials
+/docs/maintenance.md
+/docs/codex-for-oss-application.md
+/docs/github-profile-draft.md
+/docs/impact-report.md
